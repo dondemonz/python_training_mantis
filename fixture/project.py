@@ -39,8 +39,7 @@ class ProjectHelper:
 
     def click_first_project(self):
         wd = self.app.wd
-        if
-        # wd.find_element_by_xpath("//tr[4]/td/a").click()
+        wd.find_element_by_xpath("//tr[4]/td/a").click()
         time.sleep(5)
 
 
