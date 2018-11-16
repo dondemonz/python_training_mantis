@@ -1,7 +1,14 @@
 
 
 class Project:
-    def __init__(self, project_name=None, id=None):
-        self.project_name = project_name
+    def __init__(self, name=None, id=None):
+        self.name = name
         self.id = id
 
+
+
+    def __eq__(self, other):
+        return (self.id is None or other.id is None or self.id == other.id) and self.name == other.name
+
+    def __repr__(self):
+        return "%s:%s:" % (self.id, self.name)

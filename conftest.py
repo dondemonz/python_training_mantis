@@ -2,6 +2,7 @@ import pytest
 import json
 import os.path
 from fixture.application import Application
+from fixture.db import DbFixture
 
 
 fixture = None
@@ -25,7 +26,16 @@ def app(request):
     return fixture
 
 
+@pytest.fixture(scope="session")
+def db(request):
+    db_config = load_confg(request.config.getoption("--target"))["db"]
+    dbfixture = DbFixture(host=db_config["host"], name=db_config["name"], user=db_config["user"], password=db_config["password"])
+    def fin():
+        dbfixture.destroy()
+    request.addfinalizer(fin)
+    return dbfixture
 
+"""
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
     def fin():
@@ -33,7 +43,7 @@ def stop(request):
         fixture.destroy()
     request.addfinalizer(fin)
     return fixture
-
+"""
 
 
 def pytest_addoption(parser):
