@@ -1,4 +1,4 @@
-
+from sys import maxsize
 
 class Project:
     def __init__(self, name=None, id=None):
@@ -12,3 +12,9 @@ class Project:
 
     def __repr__(self):
         return "%s:%s:" % (self.id, self.name)
+
+    def id_or_max(self):
+        if self.id:
+            return int(self.id)
+        else:
+            return maxsize
