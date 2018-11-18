@@ -10,14 +10,25 @@ class ProjectHelper:
         wd.find_element_by_link_text("Manage Projects").click()
         wd.find_element_by_xpath("//input[@value='Create New Project']").click()
 
-
-    def fill_project_form(self, data):
+    """
+    def fill_project_form(self, text):
         wd = self.app.wd
         wd.find_element_by_xpath("//input[@name='name']").click()
         wd.find_element_by_xpath("//input[@name='name']").clear()
-        wd.find_element_by_xpath("//input[@name='name']").send_keys(data)
+        wd.find_element_by_xpath("//input[@name='name']").send_keys(text)
+    """
 
 
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
+
+    def fill_project_form(self, project):
+        wd = self.app.wd
+        self.change_field_value("name", project.name)
 
     def add_new_project(self):
         wd = self.app.wd
