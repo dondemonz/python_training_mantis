@@ -17,8 +17,8 @@ class SignupHelper:
         url = self.extract_confirmation_url(mail)
 
         wd.get(url)
-        wd.finf_element_by_name("password").send_keys(password)
-        wd.finf_element_by_name("password_confirm").send_keys(password)
+        wd.find_element_by_name("password").send_keys(password)
+        wd.find_element_by_name("password_confirm").send_keys(password)
         wd.find_element_by_xpath("//input[@value='Update User']").click()
 
     def extract_confirmation_url(self, text):
