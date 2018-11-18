@@ -9,13 +9,10 @@ def test_add_project(app, db):
     old_list = app.soap.get_list_project(username, password)
     data = Project(name="test")
     app.project.open_create_project_page()
-
     app.project.fill_project_form(data)
-
     app.project.add_new_project()
-
-    # old_list.append(project)
+    old_list.append(data)
     new_list = app.soap.get_list_project(username, password)
-    print(new_list)
-    assert len(old_list) + 1 == len(new_list)
-    # assert sorted(old_list, key=Project.id_or_max) == sorted(new_list, key=Project.id_or_max)
+    # print(new_list)
+    # assert len(old_list) + 1 == len(new_list)
+    assert sorted(old_list, key=Project.id_or_max) == sorted(new_list, key=Project.id_or_max)
