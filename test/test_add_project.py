@@ -7,10 +7,10 @@ def test_add_project(app, db):
     password = app.config["webadmin"]["password"]
     app.session.login("administrator", "root")
     old_list = app.soap.get_list_project(username, password)
-    # data = Project(name="test")
+    data = Project(name="test")
     app.project.open_create_project_page()
 
-    app.project.fill_project_form(Project(name="test"))
+    app.project.fill_project_form(data)
 
     app.project.add_new_project()
 
