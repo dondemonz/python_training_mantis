@@ -11,11 +11,12 @@ class ProjectHelper:
         wd.find_element_by_xpath("//input[@value='Create New Project']").click()
 
 
-    def fill_project_form(self):
+    def fill_project_form(self, name):
         wd = self.app.wd
         wd.find_element_by_xpath("//input[@name='name']").click()
         wd.find_element_by_xpath("//input[@name='name']").clear()
-        wd.find_element_by_xpath("//input[@name='name']").send_keys("test")
+        wd.find_element_by_xpath("//input[@name='name']").send_keys(name)
+
 
 
     def add_new_project(self):
